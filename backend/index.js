@@ -13,7 +13,7 @@ const app = express();
 
 const AWS = require('aws-sdk');
 const AWS_REGION = 'us-west-2';
-const API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH"; 
+const NASA_API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH"; 
 
 
 AWS.config.update({
@@ -55,7 +55,7 @@ app.get('/images', async (req, res) => {
   // everyday update one image fron nasa apod-api 
    // https://api.nasa.gov/planetary/apod?api_key=SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH
   try {
-    const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`);
+    const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
     const data = response.data;
     console.log('data: ', data);
     let hdurl = response.data.hdurl; 
