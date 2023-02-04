@@ -3,19 +3,11 @@
 const express = require("express");
 const app = express();
 
-const API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH";
-
 const AWS = require('aws-sdk');
 const AWS_REGION = 'us-west-2';
-// const AWS_ACCESS_KEY_ID = 'AKIAVKBPAXB332YBDXEV';
-// const AWS_SECRET_KEY = '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';
-// const AWS_ENDPOINT = 'http://localhost:3007';
 
 AWS.config.update({
   region: AWS_REGION,
-  // accessKeyId: AWS_ACCESS_KEY_ID,
-  // secretAccessKey: AWS_SECRET_KEY,
-  // endpoint: AWS_ENDPOINT,
 });
 const dynamoDB = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
 
