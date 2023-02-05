@@ -1,9 +1,9 @@
 // to run: go to `~/.aws/credentials` and put in the credentials commented out here
 
 const express = require("express");
-const path = require("path"); 
-const bodyParser = require("body-parser"); 
-const cors = require("cors"); 
+const path = require("path");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const axios = require("axios")
 const http = require("http");
@@ -15,7 +15,7 @@ const app = express();
 const AWS = require('aws-sdk');
 const AWS_REGION = 'us-west-2';
 
-const NASA_API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH"; 
+const NASA_API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH";
 
 // body parser middleware
 app.use(bodyParser.json());
@@ -38,9 +38,9 @@ console.log('process.cwd(): ', process.cwd());
 console.log('__dirname: ', __dirname);
 
 app.get('/events', (req, res) => {
-  const startDate = req.query.start_date;
-  const endDate = req.query.end_date;
-  console.log(startDate);
+  const startDate = req.query.start_date
+  const endDate = req.query.end_date
+  console.log(startDate)
   const params = {
     TableName: 'astronomy-events',
     KeyConditionExpression: 'ID = :partitionKeyValue and (DateStart BETWEEN :startDateSortKeyValue AND :endDateSortKeyValue)',
@@ -51,14 +51,29 @@ app.get('/events', (req, res) => {
     }
   }
   dynamoDB.query(params, (error, data) => {
-    if(error){
-      console.log('error');
-      console.log(error);
-      res.send(error);
+    if (error) {
+      console.log(error)
+      res.json({
+        isSuccess: false,
+        data: null,
+        error: error,
+      })
     }
-    else{
-      console.log(JSON.stringify(data))
-      res.status(200).send(JSON.stringify(data));
+    else {
+      // console.log(JSON.stringify(data))
+      // res.status(200).send(JSON.stringify(data))
+      res.json({
+        isSuccess: true,
+        data: data.Items.map(x => (
+          {
+            summary: x.Summary.S,
+            description: x.Description.S,
+            date_start: x.DateStart.N,
+            date_end: x.DateEnd.N,
+          }
+        )),
+        error: null,
+      })
     }
   });
 
@@ -68,7 +83,7 @@ app.get('/events', (req, res) => {
 app.get('/images', async (req, res) => {
   // get images from nasa api
   // everyday update one image fron nasa apod-api
-   // https://api.nasa.gov/planetary/apod?api_key=SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH
+  // https://api.nasa.gov/planetary/apod?api_key=SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH
   try {
     const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
     const data = response.data;
@@ -83,14 +98,8 @@ app.get('/images', async (req, res) => {
   }
 });
 
-// app.listen(3007, () => {
-//   console.log('Example app listening on port 3007!');
-// });
-
 
 const port = process.env.PORT || 8080;
 app.listen(port, function () {
-    console.log("This server has just started at 8080!");
+  console.log("This server has just started at 8080!");
 })
-
-
