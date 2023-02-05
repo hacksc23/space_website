@@ -1,31 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 import PictureofToday from './components/PictureofToday.js';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DisplayEventsPage from './components/DisplayEventsPage.js';
+import { Outlet } from 'react-router-dom';
 
 
 function App() {
-
-  
   return (
     <div className="App">
-        <div className="router-wrapper">
-            <Navbar />
-          </div>
-        <PictureofToday />
+      <div className="router-wrapper">
+        <Navbar />
+      </div>
+      <PictureofToday />
 
-        {/* <Router>
-          <div className="router-wrapper">
-            <Navbar />
-          </div>
-          <Routes>
-            <Route path='/' exact component={PictureofToday} />
-            <Route path='/calendar' component={DisplayEventsPage} />
-            <Route path='/mars' componenet={PictureofToday} />
-          </Routes>
-        </Router> */}
+      <div className="content-wrapper">
+        <Outlet />
+      </div>
     </div>
   );
 }

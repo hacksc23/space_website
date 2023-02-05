@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import reportWebVitals from './reportWebVitals';
+
 import App from './App';
 import DisplayEventsPage from './components/DisplayEventsPage.js';
-import reportWebVitals from './reportWebVitals';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,11 +15,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "calendar",
-    element: <DisplayEventsPage />,
-  },
+    children: [
+      {
+        path: "calendar",
+        element: <DisplayEventsPage />,
+      },
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

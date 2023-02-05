@@ -1,5 +1,5 @@
 import React from "react";
-import './PictureofToday.css'
+import '../styles/PictureofToday.css'
 
 class PictureofToday extends React.Component {
 
