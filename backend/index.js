@@ -19,11 +19,11 @@ const NASA_API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH";
 
 // body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // code about local url for different functions
-app.use(cors({origin: '*'}));
+app.use(cors({ origin: '*' }));
 // 前端跨域的问题， cross origin resource sharing
 
 
@@ -66,10 +66,10 @@ app.get('/events', (req, res) => {
         isSuccess: true,
         data: data.Items.map(x => (
           {
-            summary: x.Summary.S,
-            description: x.Description.S,
-            date_start: x.DateStart.N,
-            date_end: x.DateEnd.N,
+            "summary": x.Summary.S,
+            "description": x.Description.S,
+            "date_start": x.DateStart.N,
+            "date_end": x.DateEnd.N,
           }
         )),
         error: null,
@@ -85,16 +85,25 @@ app.get('/images', async (req, res) => {
   // everyday update one image fron nasa apod-api
   // https://api.nasa.gov/planetary/apod?api_key=SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH
   try {
-    const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
-    const data = response.data;
-    console.log('data: ', data);
-    let hdurl = response.data.hdurl;
-    console.log('hdurl: ', hdurl);
-    // res.send(data);
-    res.send(hdurl);
+    const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`)
+    const data = response.data
+    console.log('data: ', data)
+    let hdurl = response.data.hdurl
+    // console.log('hdurl: ', hdurl)
+    res.json({
+      isSuccess: true,
+      data: {
+        "image_url": hdurl,
+      },
+      error: null,
+    })
   } catch (error) {
-    console.error(error);
-    res.send('Error fetching data from NASA API');
+    console.error(error)
+    res.json({
+      isSuccess: false,
+      data: null,
+      error: error,
+    })
   }
 });
 
