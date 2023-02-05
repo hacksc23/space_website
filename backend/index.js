@@ -17,6 +17,14 @@ const AWS_REGION = 'us-west-2';
 
 const NASA_API_KEY = "SGHeOOlwlk4UXftzmjcomj9Zf1hmK2cobZhZJTtH"; 
 
+// body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+// code about local url for different functions
+app.use(cors({origin: '*'}));
+// 前端跨域的问题， cross origin resource sharing
 
 
 AWS.config.update({
