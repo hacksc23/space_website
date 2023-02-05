@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100%;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -40,4 +42,11 @@
 .router-wrapper {
   position: relative;
   z-index: 2;
+}
+
+.content-wrapper {
+  position: relative;
+  padding-top: 2em;
+  height: 80%;
+  overflow-y: auto;
 }

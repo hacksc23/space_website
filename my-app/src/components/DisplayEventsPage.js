@@ -103,13 +103,11 @@ class DisplayEventsPage extends React.Component {
 
                     <small id="error_message">{this.state.errorMsg}</small>
 
-
                     <div>
                         {this.state.events.map(event => (
                             <AstroEventCard key={event.start_date} eventInfo={event} />
                         ))}
                     </div>
-
                 </div>
             </>
         )
