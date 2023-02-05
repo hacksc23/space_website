@@ -14,13 +14,13 @@ return (
 	<Nav>
 		<Bars />
 		<NavMenu>
-        <NavLink to='/Home' activeStyle>
+        <NavLink to='/' activeStyle>
             Home
 		</NavLink>
-		<NavLink to='/Calender' activeStyle>
+		<NavLink to='/calender' activeStyle>
             Calender
 		</NavLink>
-		<NavLink to='/Mars' activeStyle>
+		<NavLink to='/mars' activeStyle>
             Mars
 		</NavLink>
 		{/* <NavLink to='/events' activeStyle>
