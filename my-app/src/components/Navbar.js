@@ -17,7 +17,7 @@ return (
         <NavLink to='/' activeStyle>
             Home
 		</NavLink>
-		<NavLink to='/calender' activeStyle>
+		<NavLink to='/calendar' activeStyle>
             Calender
 		</NavLink>
 		<NavLink to='/mars' activeStyle>

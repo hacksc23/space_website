@@ -11,9 +11,12 @@ function App() {
   
   return (
     <div className="App">
+        <div className="router-wrapper">
+            <Navbar />
+          </div>
         <PictureofToday />
-        
-        <Router>
+
+        {/* <Router>
           <div className="router-wrapper">
             <Navbar />
           </div>
@@ -22,10 +25,7 @@ function App() {
             <Route path='/calendar' component={DisplayEventsPage} />
             <Route path='/mars' componenet={PictureofToday} />
           </Routes>
-        </Router>
-
-        
-
+        </Router> */}
     </div>
   );
 }
