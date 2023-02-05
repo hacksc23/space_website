@@ -20,6 +20,9 @@ return (
 		<NavLink to='/Calender' activeStyle>
             Calender
 		</NavLink>
+		<NavLink to='/Mars' activeStyle>
+            Mars
+		</NavLink>
 		{/* <NavLink to='/events' activeStyle>
 			Events
 		</NavLink>

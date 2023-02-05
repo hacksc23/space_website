@@ -17,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' exact component={PictureofToday} />
             <Route path='/Calendar' component={PictureofToday} />
+            <Route path='/Mars' componenet={PictureofToday} />
           </Routes>
         </Router>
 

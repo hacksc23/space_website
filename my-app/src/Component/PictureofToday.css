@@ -1,8 +1,10 @@
 .background {
     width: 100%;
-    height: auto;
+    height: 100%;
     position: absolute;
     top: 0;
     right: 0;
     z-index: auto;
+    background: no-repeat fixed; 
 }
+

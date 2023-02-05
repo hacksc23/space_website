@@ -21,7 +21,6 @@ class PictureofToday extends React.Component {
 
 
     render() {
-
         return (
             <div className="background-wrapper">
                 <img src={this.state.img_url} className="background"  />
