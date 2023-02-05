@@ -107,6 +107,50 @@ app.get('/images', async (req, res) => {
   }
 });
 
+app.get('/news', (req, res) => {
+  const keyword = req.query.keyword
+  console.log(`received request to /news with keyword=${keyword}`)
+
+  let titleHit = null, summaryHit = null, err = null
+  Promise.all([
+    fetch(`https://api.spaceflightnewsapi.net/v3/articles?title_contains=${encodeURIComponent(keyword)}`)
+      .then(res => res.json())
+      .then(res => { titleHit = res })
+      .catch(e => (err = e)),
+    fetch(`https://api.spaceflightnewsapi.net/v3/articles?summary_contains=${encodeURIComponent(keyword)}`)
+      .then(res => res.json())
+      .then(res => (summaryHit = res))
+      .catch(e => (err = e))
+  ]).then(() => {
+    if (err !== null) {
+      console.error(err)
+      res.json({
+        isSuccess: false,
+        data: null,
+        error: err,
+      })
+    } else {
+      // console.log(titleHit)
+      // console.log(summaryHit)
+
+      // Combine two results
+      let newsMap = new Map()
+      let hits = [titleHit, summaryHit]
+      hits.forEach(hit => {
+        hit.forEach(elem => {
+          if (!newsMap.has(elem.id)) {
+            newsMap.set(elem.id, elem)
+          }
+        })
+      })
+      res.json({
+        isSuccess: true,
+        data: [...newsMap.values()],
+        error: null,
+      })
+    }
+  })
+})
 
 const port = process.env.PORT || 8080;
 app.listen(port, function () {
