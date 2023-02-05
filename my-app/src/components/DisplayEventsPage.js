@@ -59,7 +59,7 @@ class DisplayEventsPage extends React.Component {
             .then(response => response.json())
             .then(eventsData => {
                 console.log(eventsData)
-                if ('data' in eventsData) {
+                if (eventsData.isSuccess) {
                     console.log(eventsData.data)
                     this.setState({
                         events: eventsData.data,

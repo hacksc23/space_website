@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 import DisplayEventsPage from './components/DisplayEventsPage.js';
+import DisplayNewsPage from './components/DisplayNewsPage.js';
 
 import {
   createBrowserRouter,
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "calendar",
         element: <DisplayEventsPage />,
+      },
+      {
+        path: "news",
+        element: <DisplayNewsPage />,
       },
     ]
   }
